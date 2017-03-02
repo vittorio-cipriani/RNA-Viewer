@@ -49,6 +49,8 @@ public class Draw {
 
 		for (int i = 0; i < Main.aucg.length(); i++) {
 
+			boolean redOne = false;
+
 			ch = Character.toString(Main.aucg.charAt(i));
 			x = 10 + pointDistance / 2 + pointDistance * i;
 
@@ -57,7 +59,24 @@ public class Draw {
 
 			// cerchio
 			gc.fillOval(x, y, pointDim, pointDim);
-			gc.strokeOval(x, y, pointDim, pointDim);
+
+			for (Pair coppia : Main.coppie) {
+				if (i == Integer.parseInt(coppia.getFirst()) - 1 || i == Integer.parseInt(coppia.getSecond()) - 1) {
+					gc.setStroke(Color.RED);
+					gc.strokeOval(x, y, pointDim, pointDim);
+
+					redOne = true;
+					break;
+
+				}
+				
+			}
+			
+			if (!redOne) {
+				gc.setStroke(Color.BLACK);
+				gc.strokeOval(x, y, pointDim, pointDim);
+			}
+
 
 			// testo
 			gc.setFill(Color.BLACK);
@@ -80,7 +99,7 @@ public class Draw {
 		// X di fine
 		x2 = 10 + pointDistance / 2 + pointDistance * secondIndex + pointDim / 2;
 
-		int h = (x2 - x1) ;
+		int h = (x2 - x1);
 		int w = x2 - x1;
 
 		// sposto l'inizio del disegno in basso
