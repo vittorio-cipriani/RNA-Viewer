@@ -6,17 +6,18 @@ import javafx.scene.shape.ArcType;
 
 public class Draw {
 
-	public final static int canvasWidth = 800;
-	public final static int canvasHeight = 400;
-	public final static int windowWidth = 800;
-	public final static int windowHeight = 600;
+	final static int canvasWidth = 800;
+	final static int canvasHeight = 400;
+	final static int windowWidth = 800;
+	final static int windowHeight = 600;
 
-	public final static int pointDim = 20;
-	public final static int pointY = canvasHeight - pointDim - pointDim / 2;
-	public final static int baseLineLength = 780;
+	final static int stcArcHeight = 50;
 
-	public static Canvas canvas = new Canvas(Draw.canvasWidth,
-			Draw.canvasHeight);
+	final static int pointDim = 20;
+	final static int pointY = canvasHeight - pointDim - pointDim / 2;
+	final static int baseLineLength = 780;
+
+	public static Canvas canvas = new Canvas(Draw.canvasWidth, Draw.canvasHeight);
 	static GraphicsContext gc = canvas.getGraphicsContext2D();
 
 	public static void drawBase() {
@@ -66,88 +67,29 @@ public class Draw {
 
 	}
 
-	public static void drawArcs(int firstIndex,int secondIndex) {
+	public static void drawArcs(int firstIndex, int secondIndex) {
 
 		int x1, x2;
 		int pointDistance = baseLineLength / Main.aucg.length();
-		//String first, second;
-		// indici per disegnare
 
-		// gli inidic per cercare nella aucg
-		//int firstIndex, secondIndex;
-		int offSet = 10;
+		// altezza archi
 
-		// variabile per abbassare l'altezza dell'arco
-//		float radiusRatio = 1;
-//		// raggio Y dell'arco
-//		float radiusY = 100;
+		// X di inizio disegno
+		x1 = 10 + pointDistance / 2 + pointDistance * firstIndex + pointDim / 2;
 
-		//y = pointY;
+		// X di fine
+		x2 = 10 + pointDistance / 2 + pointDistance * secondIndex + pointDim / 2;
 
-		// for each nella lista coppie
-	//	for (Pair coppia : Main.coppie) {
+		int h = (x2 - x1) ;
+		int w = x2 - x1;
 
-			// estraggo gli elementi della coppia
-			//first = coppia.getFirst();
-			//second = coppia.getSecond();
+		// sposto l'inizio del disegno in basso
+		int y = pointY - h / 2;
 
-			// inizializzo punti di inizio e fine arco
-			// MoveTo moveTo = new MoveTo();
-			// ArcTo arcTo = new ArcTo();
-
-			// moveTo.setY(y);
-			// arcTo.setY(y);
-			//
-			//
-			// arcTo.setRadiusY(radiusY);
-			// arcTo.setLargeArcFlag(false);
-			// arcTo.setSweepFlag(true);
-
-			// cerco gli indici dei caratteri nella aucg per capire dove
-			// inizierà l'arco
-			//firstIndex = Main.aucg.indexOf(first);
-			//secondIndex = Main.aucg.lastIndexOf(second);
-
-			// X di inizio
-			x1 = 10 + pointDistance / 2 + pointDistance * firstIndex
-					+ pointDim / 2;
-			//
-			// x=x1;
-			// moveTo.setX(x);
-
-			// X di fine
-			x2 = 10 + pointDistance / 2 + pointDistance * secondIndex
-					+ pointDim / 2;
-
-			// x=x2;
-			// arcTo.setX(x);
-
-			// aggiusto l'altezza dell'arco ad ogni ciclo
-			// float radiusX = radiusY * radiusRatio;
-			// arcTo.setRadiusX(radiusX);
-
-			// aggiungo l'arco all'oggetto path
-			// path.getElements().add(moveTo);
-			// path.getElements().add(arcTo);
-
-			gc.setStroke(Color.RED);
-			gc.setLineWidth(2);
-			gc.strokeArc(x1, 0 + offSet, x2 - x1, pointY * 2 - offSet * 2, 0,
-					180, ArcType.OPEN);
-			offSet += 10;
-
-			// aumento il rapporto tra raggioX e raggioY dell'arco, quindi
-			// abbasso l'arco
-			// radiusRatio += 0.002;
-
-			// aggiungo ad una collezione di archi
-			// pathList.add(path);
-
-		//}
-
-		// radius y deve cambiare in base alla distanza
-		// il rapporto è quello che conta, se è 1 ho un semi cerchio
-		// con radiusY maggiore l'ovale si sviluppa in altezza
+		System.out.println(x2 - x1);
+		gc.setStroke(Color.RED);
+		gc.setLineWidth(2);
+		gc.strokeArc(x1, y, w, h, 0, 180, ArcType.OPEN);
 
 	}
 

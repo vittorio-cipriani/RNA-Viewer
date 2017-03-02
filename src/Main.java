@@ -1,67 +1,55 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import javax.swing.JOptionPane;
 
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcTo;
-import javafx.scene.shape.ArcType;
-import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 /**
- * Classe per disegnare grafi lineari non orientati
- * prova2
+ * Classe per disegnare grafi lineari non orientati prova2
+ * 
  * @author vcipr
  *
  */
 public class Main extends Application {
 
-	Path path;
-	Group root;
-	static List<Pair> coppie;
+	Path path = new Path();
+	Group root = new Group();
+	static List<Pair> coppie = new ArrayList<Pair>();
 
-	List<Path> pathList;
+	// List<Path> pathList = new ArrayList<Path>;
 	// Stringa in input di nucleotidi
 
-	static String aucg;
-
-	public Main() {
-		path = new Path();
-		root = new Group();
-		coppie = TestString.check_list();
-
-		pathList = new ArrayList<Path>();
-		// Stringa in input di nucleotidi
-
-		// try {
-		// aucg = Recognise_input.insertAUCG();
-		// } catch (Exception e) {
-		// aucg=Recognise_input.insertAUCG();
-		// }
-		while (Recognise_input.insertAUCG() == false) {
-			JOptionPane.showMessageDialog(null, "Errore inserimento");
-
-		}
-		aucg = Recognise_input.message;
-
-	}
+	static String aucg; // Stringa in input di nucleotidi
 
 	/**
 	 * Metodo che fa partire tutto
 	 */
 	@Override
 	public void start(Stage primaryStage) {
+
 		try {
 
+			/*
+			 * while (Recognise_input.insertAUCG() == false) {
+			 * JOptionPane.showMessageDialog(null, "Errore inserimento");
+			 * 
+			 * } aucg = Recognise_input.message;
+			 * 
+			 * coppie = TestString.check_list();
+			 */
+			
+			aucg = "AUCGAUCGAUCGAUCGAUCGAUCG";
+			coppie.add(new Pair("1","2"));
+			coppie.add(new Pair("3","9"));
+			coppie.add(new Pair("4","6"));
+			
+			//test
+			System.out.println(coppie.toString());
+			
+			
 			primaryStage.setResizable(false);
 
 			for (int i = 0; i < coppie.size(); i++) {
@@ -72,11 +60,10 @@ public class Main extends Application {
 				System.out.println(aucg.charAt(indice1));
 				System.out.println(aucg.charAt(indice2));
 
-				 Draw.drawArcs(indice1, indice2);
+				Draw.drawArcs(indice1, indice2);
 
 			}
 
-			//Draw.drawArcs();
 			Draw.drawBase();
 			Draw.drawLineAndOvals();
 
@@ -84,7 +71,8 @@ public class Main extends Application {
 			root.getChildren().add(Draw.canvas);
 
 			Scene scene = new Scene(root, Draw.windowWidth, Draw.windowHeight);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(
+					getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
