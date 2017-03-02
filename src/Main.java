@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+import javax.swing.event.ChangeListener;
+
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 
 /**
@@ -15,8 +16,6 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-	Path path = new Path();
-	Group root = new Group();
 	static List<Pair> coppie = new ArrayList<Pair>();
 
 	// List<Path> pathList = new ArrayList<Path>;
@@ -32,24 +31,25 @@ public class Main extends Application {
 
 		try {
 
-			/*
-			 * while (Recognise_input.insertAUCG() == false) {
-			 * JOptionPane.showMessageDialog(null, "Errore inserimento");
-			 * 
-			 * } aucg = Recognise_input.message;
-			 * 
-			 * coppie = TestString.check_list();
-			 */
-			
+//			while (Recognise_input.insertAUCG() == false) {
+//				JOptionPane.showMessageDialog(null, "Errore inserimento");
+//
+//			}
+//			aucg = Recognise_input.message;
+//
+//			coppie = TestString.check_list();
+
+			// USO QUESTI INPUT PER EVITARE DI INSERIRLI OGNI VOLTA
 			aucg = "AUCGAUCGAUCGAUCGAUCGAUCG";
-			coppie.add(new Pair("1","2"));
-			coppie.add(new Pair("3","9"));
-			coppie.add(new Pair("4","6"));
-			
-			//test
+			coppie.add(new Pair("1", "2"));
+			coppie.add(new Pair("3", "9"));
+			coppie.add(new Pair("4", "6"));
+			coppie.add(new Pair("11", "23"));
+			coppie.add(new Pair("5", "15"));
+
+			// test
 			System.out.println(coppie.toString());
-			
-			
+
 			primaryStage.setResizable(false);
 
 			for (int i = 0; i < coppie.size(); i++) {
@@ -60,19 +60,22 @@ public class Main extends Application {
 				System.out.println(aucg.charAt(indice1));
 				System.out.println(aucg.charAt(indice2));
 
-				Draw.drawArcs(indice1, indice2);
+				Draw.drawArcs_ARCS(indice1, indice2);
 
 			}
 
-			Draw.drawBase();
-			Draw.drawLineAndOvals();
+			Draw.drawBase_ARCS();
+			Draw.drawLineAndOvals_ARCS();
 
 			// root.getChildren().add(path);
-			root.getChildren().add(Draw.canvas);
+			// root.getChildren().add(Draw.canvas);
 
-			Scene scene = new Scene(root, Draw.windowWidth, Draw.windowHeight);
-			scene.getStylesheets().add(
-					getClass().getResource("application.css").toExternalForm());
+			GUI.load();
+
+			Scene scene = new Scene(GUI.root, Draw.windowWidth, Draw.windowHeight);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+			// primaryStage.setResizable(true);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
