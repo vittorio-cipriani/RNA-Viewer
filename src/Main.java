@@ -29,47 +29,28 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
+		 TestString.general_check();
+
 		try {
 
-//			while (Recognise_input.insertAUCG() == false) {
-//				JOptionPane.showMessageDialog(null, "Errore inserimento");
-//
-//			}
-//			aucg = Recognise_input.message;
-//
-//			coppie = TestString.check_list();
-
 			// USO QUESTI INPUT PER EVITARE DI INSERIRLI OGNI VOLTA
-			aucg = "AUCGAUCGAUCGAUCGAUCGAUCG";
-			coppie.add(new Pair("1", "2"));
-			coppie.add(new Pair("3", "9"));
-			coppie.add(new Pair("4", "6"));
-			coppie.add(new Pair("11", "23"));
-			coppie.add(new Pair("5", "15"));
+			// 24LETTERE
+//			aucg = "CAGCACGACACUAGCAGUCAGUGUCAGACUGCAIACAGC";
+//
+//			coppie.add(new Pair("1", "8"));
+//			coppie.add(new Pair("6", "10"));
+//			coppie.add(new Pair("2", "12"));
+//			coppie.add(new Pair("11", "23"));
+//			coppie.add(new Pair("4", "16"));
+//			coppie.add(new Pair("10", "26"));
+//			coppie.add(new Pair("18", "30"));
 
 			// test
-			System.out.println(coppie.toString());
+			// System.out.println(coppie.toString());
 
 			primaryStage.setResizable(false);
 
-			for (int i = 0; i < coppie.size(); i++) {
-				Pair trovata = coppie.get(i);
-
-				int indice1 = Integer.parseInt(trovata.getFirst()) - 1;
-				int indice2 = Integer.parseInt(trovata.getSecond()) - 1;
-				System.out.println(aucg.charAt(indice1));
-				System.out.println(aucg.charAt(indice2));
-
-				Draw.drawArcs_ARCS(indice1, indice2);
-
-			}
-
-			Draw.drawBase_ARCS();
-			Draw.drawLineAndOvals_ARCS();
-
-			// root.getChildren().add(path);
-			// root.getChildren().add(Draw.canvas);
-
+			Draw.generalDraw();
 			GUI.load();
 
 			Scene scene = new Scene(GUI.root, Draw.windowWidth, Draw.windowHeight);
