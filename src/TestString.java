@@ -197,8 +197,8 @@ public class TestString {
 		Main.aucg = message;
 		//
 		Main.coppie = coppie;
-		 Main.indiceFirst = indice1;
-		 Main.indiceSecond = indice2;
+		Main.indiceFirst = indice1;
+		Main.indiceSecond = indice2;
 	}
 
 }
