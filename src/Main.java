@@ -15,6 +15,10 @@ import javafx.stage.Stage;
  *
  */
 public class Main extends Application {
+	
+
+
+	
 
 	static List<Pair> coppie = new ArrayList<Pair>();
 
@@ -22,6 +26,9 @@ public class Main extends Application {
 	// Stringa in input di nucleotidi
 
 	static String aucg; // Stringa in input di nucleotidi
+
+	public static int indiceFirst;
+	public static int indiceSecond;
 
 	/**
 	 * Metodo che fa partire tutto
