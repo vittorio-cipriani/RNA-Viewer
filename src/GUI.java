@@ -14,15 +14,15 @@ public class GUI {
 		arcsTab.setContent(Draw.arcsCanvas);
 		arcsTab.setClosable(false);
 
-		Tab circleTab = new Tab();
-		circleTab.setText("Circle");
-		circleTab.setContent(Draw.circleCanvas);
-		circleTab.setClosable(false);
+		Tab circularTab = new Tab();
+		circularTab.setText("Circular");
+		circularTab.setContent(Draw.circularCanvas);
+		circularTab.setClosable(false);
+
 
 		tabPane.getTabs().add(arcsTab);
 
-		tabPane.getTabs().add(circleTab);
-
+		tabPane.getTabs().add(circularTab);
 
 		root.setLeft(null);
 		root.setCenter(tabPane);
