@@ -33,6 +33,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
+		//metodo per prendere gli input dell'utente
 		// TestString.general_check();
 
 		try {
