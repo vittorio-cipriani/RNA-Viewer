@@ -1,12 +1,9 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-
-import javafx.stage.Stage;
 
 public class TestString {
 
@@ -31,33 +28,49 @@ public class TestString {
 
 	public static List<Pair> split_and_order() {
 
-		String splitArr[] = prova.split("[\\;]");
-		System.out.println(Arrays.asList(splitArr));
-		List<String> x = Arrays.asList(splitArr);
-		String tmp = new String();
-		List<Pair> arrayOfPairs = new ArrayList<Pair>(x.size());
-		for (int i = 0; i < x.size(); i++) {
-			tmp = x.get(i).substring(1, x.get(i).length() - 1);
-			splitArr = tmp.split(",");
-			if (splitArr[0].compareTo(splitArr[1]) > 0) {
-				String tmpstr = splitArr[1];
-				splitArr[1] = splitArr[0];
-				splitArr[0] = tmpstr;
+		List<Pair> arrayOfPairs = null;
+		try {
+			// splitto sui punti e virgola
+			String splitArr[] = prova.split("[\\;]");
+			
+			//test
+			System.out.println(Arrays.asList(splitArr));
+			
+			List<String> x = Arrays.asList(splitArr);
+			String tmp = new String();
+			arrayOfPairs = new ArrayList<Pair>(x.size());
+			
+			for (int i = 0; i < x.size(); i++) {
+				// tolgo le tonde
+				tmp = x.get(i).substring(1, x.get(i).length() - 1);
+				// splitto sulle virgole
+				splitArr = tmp.split(",");
+				//controllo se gli indici sono in ordine
+				if (Integer.parseInt(splitArr[0]) > Integer.parseInt(splitArr[1])) {
+					String tmpstr = splitArr[1];
+					splitArr[1] = splitArr[0];
+					splitArr[0] = tmpstr;
+				}
+
+				arrayOfPairs.add(new Pair(splitArr[0], splitArr[1]));
+
 			}
 
-			arrayOfPairs.add(new Pair(splitArr[0], splitArr[1]));
+			for (Pair element : arrayOfPairs) {
+				System.out.println(element);
+				System.out.println(element.getFirst());
+				System.out.println(element.getSecond());
 
-		}
+			}
 
-		for (Pair element : arrayOfPairs) {
-			System.out.println(element);
-			System.out.println(element.getFirst());
-			System.out.println(element.getSecond());
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Errore inserimento: Rispettare il pattern della lista di adiacenze!");
+			TestString.general_check();
 
 		}
 
 		return arrayOfPairs;
-
 	}
 
 	/*
@@ -82,6 +95,20 @@ public class TestString {
 				return false;
 
 			}
+
+		return true;
+
+	}
+
+	public static boolean checkIfNumbers() {
+		String regex = "[0-9]+";
+		Pair trovata;
+		for (int i = 0; i < coppie.size(); i++) {
+			trovata = coppie.get(i);
+			if (!trovata.getFirst().matches(regex) || !trovata.getSecond().matches(regex)) {
+				return false;
+			}
+		}
 
 		return true;
 
@@ -177,7 +204,9 @@ public class TestString {
 		while (out_Of_Size() == false || check_if_equals() == false || only_one_link() == false
 				|| only_with() == false) {
 
-			if (TestString.out_Of_Size() == false) {
+			if (TestString.checkIfNumbers() == false) {
+				JOptionPane.showMessageDialog(null, "Errore inserimento: Inserire soltanto numeri nelle coppie!");
+			} else if (TestString.out_Of_Size() == false) {
 				JOptionPane.showMessageDialog(null, "Errore inserimento: Indici non esistenti nella stringa iniziale!");
 			} else if (check_if_equals() == false) {
 				JOptionPane.showMessageDialog(null, "Errore inserimento: Indici uguali");

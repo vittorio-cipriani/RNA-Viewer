@@ -24,8 +24,9 @@ public class Pair {
 		return second;
 	}
 	
+	//ridefinisci il to string per la listview
 	@Override
 	public String toString() {
-		return this.getFirst()+this.getSecond();
+		return "(" + this.getFirst() +", " +this.getSecond() +")";
 	}
 }

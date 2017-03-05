@@ -85,9 +85,17 @@ public class Draw {
 				gcArcs.strokeOval(x, y, pointDim, pointDim);
 			}
 
-			// testo
+			// carattere
 			gcArcs.setFill(Color.BLACK);
 			gcArcs.fillText(ch, x + pointDim / 3, y + pointDim / 1.4);
+
+			// contatore
+			if ((i+1) % 10 == 0 || i == 0) {
+
+				gcArcs.setFill(Color.BLACK);
+				gcArcs.fillText(Integer.toString(i+1), x + pointDim / 4, y + pointDim + pointDim / 1.4);
+
+			}
 		}
 
 	}
